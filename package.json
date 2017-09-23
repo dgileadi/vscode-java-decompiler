@@ -23,7 +23,7 @@
     ],
     "contributes": {
         "javaExtensions": [
-            "./server/org.eclipse.jdt.ls.decompiler.fernflower_1.0.0.201709231223.jar"
+            "./server/dg.jdt.ls.decompiler.fernflower_1.0.0.201709231600.jar"
         ],
         "configuration": {
             "type": "object",
