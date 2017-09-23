@@ -1,0 +1,67 @@
+{
+    "name": "java-decompiler",
+    "displayName": "Java Decompiler",
+    "description": "Adds a decompiler for the Java Language Support extension.",
+    "author": "David Gileadi",
+    "icon": "icon.png",
+    "version": "0.0.1",
+    "license": "EPL-1.0",
+    "publisher": "dgileadi",
+    "engines": {
+        "vscode": "^1.5.0"
+    },
+    "categories": [
+        "Languages"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dgileadi/vscode-java-decompiler"
+    },
+    "main": "./out/src/extension",
+    "activationEvents": [
+        "onLanguage:java"
+    ],
+    "contributes": {
+        "javaExtensions": [
+            "./server/org.eclipse.jdt.ls.decompiler.fernflower_1.0.0.201709231223.jar"
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "Java decompiler configuration",
+            "properties": {
+                "java.decompiler.id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "default": "fernflower",
+                    "description": "Specifies the id of the decompiler to use.",
+                    "oneOf":[
+                        "fernflower"
+                    ]
+                },
+                "java.decompiler.configuration": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "default": null,
+                    "description": "Specifies additional configuration for the decompiler. The format is specific to each decompiler, and typically matches its command-line arguments."
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "tsc -p ./",
+        "compile": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install"
+    },
+    "devDependencies": {
+        "typescript": "^2.0.3",
+        "vscode": "^1.0.0",
+        "@types/node": "^6.0.40"
+    },
+    "extensionDependencies": [
+        "redhat.java"
+    ]
+}
