@@ -13,5 +13,5 @@ To see the decompiler in action, right-click on a Java symbol for which you don'
 You can use the following settings to customize the decompiler:
 
 * `java.decompiler.id`: the ID of a decompiler to use. Currently only `fernflower` is supported.
-* `java.decompiler.configuration`: additional configuration to provide to the decompiler. The format depends on the chosen decompiler, and is typically in the form of the decompiler's command-line options.
-    * [Fernflower's command-line options](https://github.com/JetBrains/intellij-community/tree/master/plugins/java-decompiler/engine#command-line-options)
+* `java.decompiler.configuration`: additional configuration to provide to the decompiler. The format depends on the chosen decompiler.
+    * [Fernflower's configuration](https://github.com/JetBrains/intellij-community/tree/master/plugins/java-decompiler/engine#command-line-options)
