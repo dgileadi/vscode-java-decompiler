@@ -13,5 +13,4 @@ To see the decompiler in action, right-click on a Java symbol for which you don'
 You can use the following settings to customize the decompiler:
 
 * `java.contentProvider.preferred`: the ID of a decompiler to use. Currently, `fernflower`, `cfr` and `procyon` are supported. Defaults to `fernflower`.
-* `java.decompiler`: additional configuration to provide to the decompiler. The format depends on the chosen decompiler.
-    * [Fernflower's configuration](https://github.com/JetBrains/intellij-community/tree/master/plugins/java-decompiler/engine#command-line-options)
+* `java.decompiler.[id]` (replace `[id]` with the ID of the decompiler you wish to configure): additional configuration to provide to the decompiler. The format depends on the chosen decompiler. Use the autocomplete functionality of Visual Studio Code's settings to view the possible options and their descriptions.

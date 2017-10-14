@@ -27,606 +27,583 @@
             "type": "object",
             "title": "Java decompiler configuration",
             "properties": {
-                "java.contentProvider.preferred": {
-                    "type": [
-                        "string",
-                        "array",
-                        "null"
-                    ],
-                    "default": "fernflower",
-                    "description": "Specifies the id of the decompiler to use.",
-                    "enum":[
-                        "cfr",
-                        "fernflower",
-                        "procyon"
-                    ]
-                },
-                "java.decompiler": {
-                    "type": [
-                        "object",
-                        "null"
-                    ],
+                "java.decompiler.fernflower": {
+                    "type": "object",
+                    "description": "Fernflower configuration",
                     "properties": {
-                        "fernflower": {
-                            "type": "object",
-                            "description": "Fernflower configuration",
-                            "properties": {
-                                "rbr": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "hide bridge methods"
-                                },
-                                "rsy": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "hide synthetic class members"
-                                },
-                                "din": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "decompile inner classes"
-                                },
-                                "dc4": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "collapse 1.4 class references"
-                                },
-                                "das": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "decompile assertions"
-                                },
-                                "hes": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "hide empty super invocation"
-                                },
-                                "hdc": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "hide empty default constructor"
-                                },
-                                "dgs": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "decompile generic signatures"
-                                },
-                                "ner": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "assume return not throwing exceptions"
-                                },
-                                "den": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "decompile enumerations"
-                                },
-                                "rgn": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "remove getClass() invocation, when it is part of a qualified new statement"
-                                },
-                                "lit": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "output numeric literals \"as-is\""
-                                },
-                                "asc": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "encode non-ASCII characters in string and character literals as Unicode escapes"
-                                },
-                                "bto": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "interpret int 1 as boolean true (workaround to a compiler bug)"
-                                },
-                                "nns": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "allow for not set synthetic attribute (workaround to a compiler bug)"
-                                },
-                                "uto": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "consider nameless types as java.lang.Object (workaround to a compiler architecture flaw)"
-                                },
-                                "udv": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "reconstruct variable names from debug information, if present"
-                                },
-                                "rer": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "remove empty exception ranges"
-                                },
-                                "fdi": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "de-inline finally structures"
-                                },
-                                "mpm": {
-                                    "type": "integer",
-                                    "default": 0,
-                                    "description": "maximum allowed processing time per decompiled method, in seconds. 0 means no upper limit"
-                                },
-                                "ren": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "rename ambiguous (resp. obfuscated) classes and class elements"
-                                },
-                                "urc": {
-                                    "type": "string",
-                                    "description": "full name of user-supplied class implementing IIdentifierRenamer. It is used to determine which class identifiers should be renamed and provides new identifier names (see \"Renaming identifiers\")"
-                                },
-                                "inn": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "check for IntelliJ IDEA-specific @NotNull annotation and remove inserted code if found"
-                                },
-                                "lac": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "decompile lambda expressions to anonymous classes"
-                                },
-                                "nls": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "define new line character to be used for output. 0 - '\r\n' (Windows), 1 - '\n' (Unix), default is OS-dependent"
-                                },
-                                "ind": {
-                                    "type": "string",
-                                    "description": "indentation string (default is 3 spaces)"
-                                },
-                                "log": {
-                                    "type": "string",
-                                    "default": "INFO",
-                                    "enum": [
-                                        "TRACE",
-                                        "INFO",
-                                        "WARN",
-                                        "ERROR"
-                                    ],
-                                    "description": "a logging level, possible values are TRACE, INFO, WARN, ERROR"
-                                }
-                            }
+                        "rbr": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "hide bridge methods"
                         },
-                        "cfr": {
-                            "type": "object",
-                            "description": "CFR configuration",
-                            "properties": {
-                                "stringbuffer": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Convert new Stringbuffer().add.add.add to string + string + string - see http://www.benf.org/other/cfr/stringbuilder-vs-concatenation.html"
-                                },
-                                "stringzbuilder": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Convert new Stringbuilder().add.add.add to string + string + string - see http://www.benf.org/other/cfr/stringbuilder-vs-concatenation.html"
-                                },
-                                "decodeenumswitch": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Re-sugar switch on enum - see http://www.benf.org/other/cfr/switch-on-enum.html"
-                                },
-                                "sugarenums": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Re-sugar enums - see http://www.benf.org/other/cfr/how-are-enums-implemented.html"
-                                },
-                                "decodestringswitch": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Re-sugar switch on String - see http://www.benf.org/other/cfr/java7switchonstring.html"
-                                },
-                                "arrayiter": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Re-sugar array based iteration."
-                                },
-                                "collectioniter": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Re-sugar collection based iteration"
-                                },
-                                "decodelambdas": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Re-build lambda functions"
-                                },
-                                "innerclasses": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Decompile innter classes"
-                                },
-                                "hideutf": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Hide UTF8 characters - quote them instead of showing the raw characters"
-                                },
-                                "hidelongstrings": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Hide very long strings - useful if obfuscators have placed fake code in strings"
-                                },
-                                "removeboilerplate": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Remove boilderplate functions - constructor boilerplate, lambda deserialisation etc"
-                                },
-                                "removeinnerclasssynthetics": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Remove (where possible) implicit outer class references in inner classes"
-                                },
-                                "hidebridgemethods": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Hide bridge methods"
-                                },
-                                "liftconstructorinit": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Lift initialisation code common to all constructors into member initialisation"
-                                },
-                                "removedeadmethods": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Remove pointless methods - default constructor etc"
-                                },
-                                "removebadgenerics": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Hide generics where we've obviously got it wrong, and fallback to non-generic"
-                                },
-                                "sugarasserts": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Re-sugar assert calls"
-                                },
-                                "sugarboxing": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Where possible, remove pointless boxing wrappers"
-                                },
-                                "showversion": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Show CFR version used in header (handy to turn off when regression testing)"
-                                },
-                                "decodefinally": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Re-sugar finally statements"
-                                },
-                                "tidymonitors": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Remove support code for monitors - eg catch blocks just to exit a monitor"
-                                },
-                                "commentmonitors": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Replace monitors with comments - useful if we're completely confused"
-                                },
-                                "lenient": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Be a bit more lenient in situations where we'd normally throw an exception"
-                                },
-                                "dumpclasspath": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Dump class path for debugging purposes"
-                                },
-                                "comments": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Output comments describing decompiler status, fallback flags etc"
-                                },
-                                "forcetopsort": {
-                                    "type": [
-                                        "boolean",
-                                        "null"
-                                    ],
-                                    "default": null,
-                                    "description": "Force basic block sorting.  Usually not necessary for code emitted directly from javac, but required in the case of obfuscation (or dex2jar!).  Will be enabled in recovery."
-                                },
-                                "forloopaggcapture": {
-                                    "type": [
-                                        "boolean",
-                                        "null"
-                                    ],
-                                    "default": null,
-                                    "description": "Allow for loops to aggresively roll mutations into update section, even if they don't appear to be involved with the predicate"
-                                },
-                                "forcetopsortaggress": {
-                                    "type": [
-                                        "boolean",
-                                        "null"
-                                    ],
-                                    "default": null,
-                                    "description": "Force extra aggressive topsort options"
-                                },
-                                "forcecondpropagate": {
-                                    "type": [
-                                        "boolean",
-                                        "null"
-                                    ],
-                                    "default": null,
-                                    "description": "Pull results of deterministic jumps back through some constant assignments"
-                                },
-                                "forcereturningifs": {
-                                    "type": [
-                                        "boolean",
-                                        "null"
-                                    ],
-                                    "default": null,
-                                    "description": "Move return up to jump site"
-                                },
-                                "forceexceptionprune": {
-                                    "type": [
-                                        "boolean",
-                                        "null"
-                                    ],
-                                    "default": null,
-                                    "description": "Try to extend and merge exceptions more aggressively"
-                                },
-                                "aexagg": {
-                                    "type": [
-                                        "boolean",
-                                        "null"
-                                    ],
-                                    "default": null,
-                                    "description": "Remove nested exception handlers if they don't change semantics"
-                                },
-                                "recovertypeclash": {
-                                    "type": [
-                                        "boolean",
-                                        "null"
-                                    ],
-                                    "default": null,
-                                    "description": "Split lifetimes where analysis caused type clash"
-                                },
-                                "recovertypehints": {
-                                    "type": [
-                                        "boolean",
-                                        "null"
-                                    ],
-                                    "default": null,
-                                    "description": "Recover type hints for iterators from first pass."
-                                },
-                                "outputdir": {
-                                    "type": "string",
-                                    "default": null,
-                                    "description": "Decompile to files in [directory] (outputpath + clobber) (historic compatibility)"
-                                },
-                                "outputpath": {
-                                    "type": "string",
-                                    "default": null,
-                                    "description": "Decompile to files in [directory]"
-                                },
-                                "clobber": {
-                                    "type": [
-                                        "boolean",
-                                        "null"
-                                    ],
-                                    "default": null,
-                                    "description": "Overwrite files when using outputpath"
-                                },
-                                "showops": {
-                                    "type": "integer",
-                                    "default": 0,
-                                    "description": "Show some (cryptic!) debug"
-                                },
-                                "silent": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Don't display state while decompiling"
-                                },
-                                "recover": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Allow more and more aggressive options to be set if decompilation fails"
-                                },
-                                "eclipse": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Enable transformations to handle eclipse code better"
-                                },
-                                "override": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Generate @Override annotations (if method is seen to implement interface method, or override a base class method)"
-                                },
-                                "showinferrable": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Decorate methods with explicit types if not implied by arguments."
-                                },
-                                "help": {
-                                    "type": "string",
-                                    "default": null,
-                                    "description": "Show help for a given parameter"
-                                },
-                                "allowcorrecting": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Allow transformations which correct errors, potentially at the cost of altering emitted code behaviour.  An example would be removing impossible (in java!) exception handling - if this has any effect, a warning will be emitted."
-                                },
-                                "labelledblocks": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Allow code to be emitted which uses labelled blocks, (handling odd forward gotos)"
-                                },
-                                "j14classobj": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Reverse java 1.4 class object construction"
-                                },
-                                "hidelangimports": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Hide imports from java.lang."
-                                },
-                                "recpass": {
-                                    "type": "integer",
-                                    "default": 0,
-                                    "description": "Decompile specifically with recovery options from pass #X. (really only useful for debugging)"
-                                },
-                                "analyseas": {
-                                    "type": "string",
-                                    "default": null,
-                                    "enum": [
-                                        "jar",
-                                        "war",
-                                        "class"
-                                    ],
-                                    "description": "Force file to be analysed as 'jar' or 'class'"
-                                },
-                                "jarfilter": {
-                                    "type": "string",
-                                    "default": null,
-                                    "description": "Substring regex - analyse only classes where the fqn matches this pattern. (when analysing jar)."
-                                },
-                                "rename": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Synonym for 'renamedupmembers' + 'renameillegalidents' + 'renameenummembers'"
-                                },
-                                "renamedupmembers": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Rename ambiguous/duplicate fields.  Note - this WILL break reflection based access, so is not automatically enabled."
-                                },
-                                "renamesmallmembers": {
-                                    "type": "integer",
-                                    "default": 0,
-                                    "description": "Rename small members.  Note - this WILL break reflection based access, so is not automatically enabled."
-                                },
-                                "renameillegalidents": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Rename identifiers which are not valid java identifiers.  Note - this WILL break reflection based access, so is not automatically enabled."
-                                },
-                                "renameenumidents": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Rename ENUM identifiers which do not match their 'expected' string names.  Note - this WILL break reflection based access, so is not automatically enabled."
-                                },
-                                "aggressivesizethreshold": {
-                                    "type": "integer",
-                                    "default": 15000,
-                                    "description": "Opcode count at which to trigger aggressive reductions"
-                                },
-                                "staticinitreturn": {
-                                    "type": "boolean",
-                                    "default": true,
-                                    "description": "Try to remove return from static init"
-                                },
-                                "filename": {
-                                    "type": "string",
-                                    "default": null,
-                                    "description": "Name of file to analyse."
-                                },
-                                "methodname": {
-                                    "type": "string",
-                                    "default": null,
-                                    "description": "Name of method to analyse."
-                                },
-                                "extraclasspath": {
-                                    "type": "string",
-                                    "default": null,
-                                    "description": "additional class path - classes in this classpath will be used if needed."
-                                },
-                                "pullcodecase": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Pull code into case statements agressively."
-                                },
-                                "elidescala": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Elide things which aren't helpful in scala output (serialVersionUID, @ScalaSignature)."
-                                },
-                                "caseinsensitivefs": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Cope with case insensitive file systems by renaming colliding classes."
-                                }
-                            }
+                        "rsy": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "hide synthetic class members"
                         },
-                        "procyon": {
-                            "type": "object",
-                            "description": "Procyon configuration",
-                            "properties": {
-                                "mergeVariables": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Attempt to merge as many variables as possible.  This may lead to fewer declarations, but at the expense of inlining and useful naming.  This feature is experimental and may be removed or become the standard behavior in future releases."
-                                },
-                                "collapseImports": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Collapse multiple imports from the same package into a single wildcard import."
-                                },
-                                "forceExplicitTypeArguments": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Always print type arguments to generic methods."
-                                },
-                                "retainRedundantCasts": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Do not remove redundant explicit casts."
-                                },
-                                "flattenSwitchBlocks": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Drop the braces statements around switch sections when possible."
-                                },
-                                "showSyntheticMembers": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Show synthetic (compiler-generated) members."
-                                },
-                                "excludeNestedTypes": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Exclude nested types when decompiling their enclosing types."
-                                },
-                                "showDebugLineNumbers": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "For debugging, show Java line numbers as inline comments (implies -ln; requires -o)."
-                                },
-                                "retainPointlessSwitches": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Do not lift the contents of switches having only a default label."
-                                },
-                                "isUnicodeOutputEnabled": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Enable Unicode output (printable non-ASCII characters will not be escaped)."
-                                },
-                                "simplifyMemberReferences": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Simplify type-qualified member references in Java output [EXPERIMENTAL]."
-                                },
-                                "disableForEachTransforms": {
-                                    "type": "boolean",
-                                    "default": false,
-                                    "description": "Disable 'for each' loop transforms."
-                                }
-                            }
+                        "din": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "decompile inner classes"
+                        },
+                        "dc4": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "collapse 1.4 class references"
+                        },
+                        "das": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "decompile assertions"
+                        },
+                        "hes": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "hide empty super invocation"
+                        },
+                        "hdc": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "hide empty default constructor"
+                        },
+                        "dgs": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "decompile generic signatures"
+                        },
+                        "ner": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "assume return not throwing exceptions"
+                        },
+                        "den": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "decompile enumerations"
+                        },
+                        "rgn": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "remove getClass() invocation, when it is part of a qualified new statement"
+                        },
+                        "lit": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "output numeric literals \"as-is\""
+                        },
+                        "asc": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "encode non-ASCII characters in string and character literals as Unicode escapes"
+                        },
+                        "bto": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "interpret int 1 as boolean true (workaround to a compiler bug)"
+                        },
+                        "nns": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "allow for not set synthetic attribute (workaround to a compiler bug)"
+                        },
+                        "uto": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "consider nameless types as java.lang.Object (workaround to a compiler architecture flaw)"
+                        },
+                        "udv": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "reconstruct variable names from debug information, if present"
+                        },
+                        "rer": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "remove empty exception ranges"
+                        },
+                        "fdi": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "de-inline finally structures"
+                        },
+                        "mpm": {
+                            "type": "integer",
+                            "default": 0,
+                            "description": "maximum allowed processing time per decompiled method, in seconds. 0 means no upper limit"
+                        },
+                        "ren": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "rename ambiguous (resp. obfuscated) classes and class elements"
+                        },
+                        "urc": {
+                            "type": "string",
+                            "description": "full name of user-supplied class implementing IIdentifierRenamer. It is used to determine which class identifiers should be renamed and provides new identifier names (see \"Renaming identifiers\")"
+                        },
+                        "inn": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "check for IntelliJ IDEA-specific @NotNull annotation and remove inserted code if found"
+                        },
+                        "lac": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "decompile lambda expressions to anonymous classes"
+                        },
+                        "nls": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "define new line character to be used for output. 0 - '\r\n' (Windows), 1 - '\n' (Unix), default is OS-dependent"
+                        },
+                        "ind": {
+                            "type": "string",
+                            "description": "indentation string (default is 3 spaces)"
+                        },
+                        "log": {
+                            "type": "string",
+                            "default": "INFO",
+                            "enum": [
+                                "TRACE",
+                                "INFO",
+                                "WARN",
+                                "ERROR"
+                            ],
+                            "description": "a logging level, possible values are TRACE, INFO, WARN, ERROR"
+                        }
+                    }
+                },
+                "java.decompiler.cfr": {
+                    "type": "object",
+                    "description": "CFR configuration",
+                    "properties": {
+                        "stringbuffer": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Convert new Stringbuffer().add.add.add to string + string + string - see http://www.benf.org/other/cfr/stringbuilder-vs-concatenation.html"
+                        },
+                        "stringzbuilder": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Convert new Stringbuilder().add.add.add to string + string + string - see http://www.benf.org/other/cfr/stringbuilder-vs-concatenation.html"
+                        },
+                        "decodeenumswitch": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Re-sugar switch on enum - see http://www.benf.org/other/cfr/switch-on-enum.html"
+                        },
+                        "sugarenums": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Re-sugar enums - see http://www.benf.org/other/cfr/how-are-enums-implemented.html"
+                        },
+                        "decodestringswitch": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Re-sugar switch on String - see http://www.benf.org/other/cfr/java7switchonstring.html"
+                        },
+                        "arrayiter": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Re-sugar array based iteration."
+                        },
+                        "collectioniter": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Re-sugar collection based iteration"
+                        },
+                        "decodelambdas": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Re-build lambda functions"
+                        },
+                        "innerclasses": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Decompile innter classes"
+                        },
+                        "hideutf": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Hide UTF8 characters - quote them instead of showing the raw characters"
+                        },
+                        "hidelongstrings": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Hide very long strings - useful if obfuscators have placed fake code in strings"
+                        },
+                        "removeboilerplate": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Remove boilderplate functions - constructor boilerplate, lambda deserialisation etc"
+                        },
+                        "removeinnerclasssynthetics": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Remove (where possible) implicit outer class references in inner classes"
+                        },
+                        "hidebridgemethods": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Hide bridge methods"
+                        },
+                        "liftconstructorinit": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Lift initialisation code common to all constructors into member initialisation"
+                        },
+                        "removedeadmethods": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Remove pointless methods - default constructor etc"
+                        },
+                        "removebadgenerics": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Hide generics where we've obviously got it wrong, and fallback to non-generic"
+                        },
+                        "sugarasserts": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Re-sugar assert calls"
+                        },
+                        "sugarboxing": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Where possible, remove pointless boxing wrappers"
+                        },
+                        "showversion": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Show CFR version used in header (handy to turn off when regression testing)"
+                        },
+                        "decodefinally": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Re-sugar finally statements"
+                        },
+                        "tidymonitors": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Remove support code for monitors - eg catch blocks just to exit a monitor"
+                        },
+                        "commentmonitors": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Replace monitors with comments - useful if we're completely confused"
+                        },
+                        "lenient": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Be a bit more lenient in situations where we'd normally throw an exception"
+                        },
+                        "dumpclasspath": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Dump class path for debugging purposes"
+                        },
+                        "comments": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Output comments describing decompiler status, fallback flags etc"
+                        },
+                        "forcetopsort": {
+                            "type": [
+                                "boolean",
+                                "null"
+                            ],
+                            "default": null,
+                            "description": "Force basic block sorting.  Usually not necessary for code emitted directly from javac, but required in the case of obfuscation (or dex2jar!).  Will be enabled in recovery."
+                        },
+                        "forloopaggcapture": {
+                            "type": [
+                                "boolean",
+                                "null"
+                            ],
+                            "default": null,
+                            "description": "Allow for loops to aggresively roll mutations into update section, even if they don't appear to be involved with the predicate"
+                        },
+                        "forcetopsortaggress": {
+                            "type": [
+                                "boolean",
+                                "null"
+                            ],
+                            "default": null,
+                            "description": "Force extra aggressive topsort options"
+                        },
+                        "forcecondpropagate": {
+                            "type": [
+                                "boolean",
+                                "null"
+                            ],
+                            "default": null,
+                            "description": "Pull results of deterministic jumps back through some constant assignments"
+                        },
+                        "forcereturningifs": {
+                            "type": [
+                                "boolean",
+                                "null"
+                            ],
+                            "default": null,
+                            "description": "Move return up to jump site"
+                        },
+                        "forceexceptionprune": {
+                            "type": [
+                                "boolean",
+                                "null"
+                            ],
+                            "default": null,
+                            "description": "Try to extend and merge exceptions more aggressively"
+                        },
+                        "aexagg": {
+                            "type": [
+                                "boolean",
+                                "null"
+                            ],
+                            "default": null,
+                            "description": "Remove nested exception handlers if they don't change semantics"
+                        },
+                        "recovertypeclash": {
+                            "type": [
+                                "boolean",
+                                "null"
+                            ],
+                            "default": null,
+                            "description": "Split lifetimes where analysis caused type clash"
+                        },
+                        "recovertypehints": {
+                            "type": [
+                                "boolean",
+                                "null"
+                            ],
+                            "default": null,
+                            "description": "Recover type hints for iterators from first pass."
+                        },
+                        "outputdir": {
+                            "type": "string",
+                            "default": null,
+                            "description": "Decompile to files in [directory] (outputpath + clobber) (historic compatibility)"
+                        },
+                        "outputpath": {
+                            "type": "string",
+                            "default": null,
+                            "description": "Decompile to files in [directory]"
+                        },
+                        "clobber": {
+                            "type": [
+                                "boolean",
+                                "null"
+                            ],
+                            "default": null,
+                            "description": "Overwrite files when using outputpath"
+                        },
+                        "showops": {
+                            "type": "integer",
+                            "default": 0,
+                            "description": "Show some (cryptic!) debug"
+                        },
+                        "silent": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Don't display state while decompiling"
+                        },
+                        "recover": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Allow more and more aggressive options to be set if decompilation fails"
+                        },
+                        "eclipse": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Enable transformations to handle eclipse code better"
+                        },
+                        "override": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Generate @Override annotations (if method is seen to implement interface method, or override a base class method)"
+                        },
+                        "showinferrable": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Decorate methods with explicit types if not implied by arguments."
+                        },
+                        "help": {
+                            "type": "string",
+                            "default": null,
+                            "description": "Show help for a given parameter"
+                        },
+                        "allowcorrecting": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Allow transformations which correct errors, potentially at the cost of altering emitted code behaviour.  An example would be removing impossible (in java!) exception handling - if this has any effect, a warning will be emitted."
+                        },
+                        "labelledblocks": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Allow code to be emitted which uses labelled blocks, (handling odd forward gotos)"
+                        },
+                        "j14classobj": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Reverse java 1.4 class object construction"
+                        },
+                        "hidelangimports": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Hide imports from java.lang."
+                        },
+                        "recpass": {
+                            "type": "integer",
+                            "default": 0,
+                            "description": "Decompile specifically with recovery options from pass #X. (really only useful for debugging)"
+                        },
+                        "analyseas": {
+                            "type": "string",
+                            "default": null,
+                            "enum": [
+                                "jar",
+                                "war",
+                                "class"
+                            ],
+                            "description": "Force file to be analysed as 'jar' or 'class'"
+                        },
+                        "jarfilter": {
+                            "type": "string",
+                            "default": null,
+                            "description": "Substring regex - analyse only classes where the fqn matches this pattern. (when analysing jar)."
+                        },
+                        "rename": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Synonym for 'renamedupmembers' + 'renameillegalidents' + 'renameenummembers'"
+                        },
+                        "renamedupmembers": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Rename ambiguous/duplicate fields.  Note - this WILL break reflection based access, so is not automatically enabled."
+                        },
+                        "renamesmallmembers": {
+                            "type": "integer",
+                            "default": 0,
+                            "description": "Rename small members.  Note - this WILL break reflection based access, so is not automatically enabled."
+                        },
+                        "renameillegalidents": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Rename identifiers which are not valid java identifiers.  Note - this WILL break reflection based access, so is not automatically enabled."
+                        },
+                        "renameenumidents": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Rename ENUM identifiers which do not match their 'expected' string names.  Note - this WILL break reflection based access, so is not automatically enabled."
+                        },
+                        "aggressivesizethreshold": {
+                            "type": "integer",
+                            "default": 15000,
+                            "description": "Opcode count at which to trigger aggressive reductions"
+                        },
+                        "staticinitreturn": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Try to remove return from static init"
+                        },
+                        "filename": {
+                            "type": "string",
+                            "default": null,
+                            "description": "Name of file to analyse."
+                        },
+                        "methodname": {
+                            "type": "string",
+                            "default": null,
+                            "description": "Name of method to analyse."
+                        },
+                        "extraclasspath": {
+                            "type": "string",
+                            "default": null,
+                            "description": "additional class path - classes in this classpath will be used if needed."
+                        },
+                        "pullcodecase": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Pull code into case statements agressively."
+                        },
+                        "elidescala": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Elide things which aren't helpful in scala output (serialVersionUID, @ScalaSignature)."
+                        },
+                        "caseinsensitivefs": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Cope with case insensitive file systems by renaming colliding classes."
+                        }
+                    }
+                },
+                "java.decompiler.procyon": {
+                    "type": "object",
+                    "description": "Procyon configuration",
+                    "properties": {
+                        "mergeVariables": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Attempt to merge as many variables as possible.  This may lead to fewer declarations, but at the expense of inlining and useful naming.  This feature is experimental and may be removed or become the standard behavior in future releases."
+                        },
+                        "collapseImports": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Collapse multiple imports from the same package into a single wildcard import."
+                        },
+                        "forceExplicitTypeArguments": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Always print type arguments to generic methods."
+                        },
+                        "retainRedundantCasts": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Do not remove redundant explicit casts."
+                        },
+                        "flattenSwitchBlocks": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Drop the braces statements around switch sections when possible."
+                        },
+                        "showSyntheticMembers": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Show synthetic (compiler-generated) members."
+                        },
+                        "excludeNestedTypes": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Exclude nested types when decompiling their enclosing types."
+                        },
+                        "showDebugLineNumbers": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "For debugging, show Java line numbers as inline comments (implies -ln; requires -o)."
+                        },
+                        "retainPointlessSwitches": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Do not lift the contents of switches having only a default label."
+                        },
+                        "isUnicodeOutputEnabled": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Enable Unicode output (printable non-ASCII characters will not be escaped)."
+                        },
+                        "simplifyMemberReferences": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Simplify type-qualified member references in Java output [EXPERIMENTAL]."
+                        },
+                        "disableForEachTransforms": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Disable 'for each' loop transforms."
                         }
                     },
-                    "default": null,
-                    "description": "Specifies additional configuration for the decompiler. The properties are specific to each decompiler."
+                    "default": null
                 }
             }
         }
