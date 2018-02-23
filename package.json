@@ -4,7 +4,7 @@
     "description": "Adds a decompiler for the Java Language Support extension.",
     "author": "David Gileadi",
     "icon": "icon.png",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "license": "EPL-1.0",
     "publisher": "dgileadi",
     "engines": {
@@ -19,9 +19,10 @@
     },
     "contributes": {
         "javaExtensions": [
-            "./server/dg.jdt.ls.decompiler.cfr_0.0.1.201710121752.jar",
-            "./server/dg.jdt.ls.decompiler.fernflower_0.0.1.201710121752.jar",
-            "./server/dg.jdt.ls.decompiler.procyon_0.0.1.201710121752.jar"
+            "./server/dg.jdt.ls.decompiler.common-0.0.2-201802221740.jar",
+            "./server/dg.jdt.ls.decompiler.cfr-0.0.2-201802221740.jar",
+            "./server/dg.jdt.ls.decompiler.fernflower-0.0.2-201802221740.jar",
+            "./server/dg.jdt.ls.decompiler.procyon-0.0.2-201802221740.jar"
         ],
         "configuration": {
             "type": "object",
