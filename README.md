@@ -4,7 +4,7 @@ This extension allows you to decompile Java class files. It requires [Language S
 
 To see the decompiler in action, right-click on a Java symbol for which you don't have the source code, and choose Go to Definition (or simply command/ctrl+click on the symbol). You will see the decompiled code.
 
-The Java source code is available in the https://github.com/dgileadi/dg.jdt.ls.decompiler repo.
+The Java source code is available in the <https://github.com/dgileadi/dg.jdt.ls.decompiler> repo.
 
 ## Requirements
 
