@@ -820,7 +820,7 @@
                             "default": false,
                             "description": "Do not lift the contents of switches having only a default label."
                         },
-                        "unicodeOutputEnabled": {
+                        "isUnicodeOutputEnabled": {
                             "type": "boolean",
                             "default": false,
                             "description": "Enable Unicode output (printable non-ASCII characters will not be escaped)."
