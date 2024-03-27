@@ -9,6 +9,9 @@
     "publisher": "dgileadi",
     "engines": {
         "vscode": "^1.5.0"
+    },"scripts": {
+        "prepack": "vsce package",
+        "publish": "vsce publish"
     },
     "categories": [
         "Programming Languages"
